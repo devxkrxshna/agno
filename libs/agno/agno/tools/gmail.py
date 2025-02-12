@@ -194,14 +194,14 @@ class GmailTools(Toolkit):
                         "auth_uri": "https://accounts.google.com/o/oauth2/auth",
                         "token_uri": "https://oauth2.googleapis.com/token",
                         "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-                        "redirect_uris": [getenv("GOOGLE_REDIRECT_URI", "http://localhost")],
+                        "redirect_uris": [getenv("GOOGLE_REDIRECT_URI", "http://localhost:3000")],
                     }
                 }
                 if creds_file.exists():
                     flow = InstalledAppFlow.from_client_secrets_file(str(creds_file), self.scopes)
                 else:
                     flow = InstalledAppFlow.from_client_config(client_config, self.scopes)
-                self.creds = flow.run_local_server(port=0)
+                self.creds = flow.run_local_server(port=3000)
 
             # Save the credentials for future use
             if self.creds and self.creds.valid:
